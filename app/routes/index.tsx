@@ -1,14 +1,9 @@
 import { useLoaderData } from "remix";
 import type { LoaderFunction } from "remix";
 import { db } from "~/utils/db.server";
+import type { users } from "@prisma/client";
 
-type User = {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-};
-type LoaderData = { users: User[] };
+type LoaderData = { users: users[] };
 export let loader: LoaderFunction = async () => {
   const data = {
     users: await db.users.findMany(),
