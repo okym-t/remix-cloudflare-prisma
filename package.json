@@ -4,9 +4,10 @@
   "description": "",
   "license": "",
   "scripts": {
+    "prisma:generate": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy npx prisma generate",
     "build": "remix build",
     "dev": "remix watch",
-    "postinstall": "remix setup cloudflare-workers",
+    "postinstall": "remix setup cloudflare-workers && npm run prisma:generate",
     "build:worker": "NODE_ENV=production node worker.build.js",
     "dev:worker": "node worker.build.js",
     "start": "miniflare --build-command \"npm run dev:worker\" --watch",
